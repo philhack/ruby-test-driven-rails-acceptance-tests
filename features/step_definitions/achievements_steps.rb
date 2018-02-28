@@ -1,15 +1,14 @@
 Given("I am a guest user") do
-  pending # Write code here that turns the phrase above into concrete actions
 end
 
 Given("there is a public achievement") do
-  pending # Write code here that turns the phrase above into concrete actions
+  @achievement = FactoryGirl.create(:public_achievement, title: 'I did it')
 end
 
 When("I go to the achievement's page") do
-  pending # Write code here that turns the phrase above into concrete actions
+  visit(achievement_path(@achievement.id))
 end
 
 Then("I must see achievement's content") do
-  pending # Write code here that turns the phrase above into concrete actions
+  expect(page).to have_content('I did it')
 end
