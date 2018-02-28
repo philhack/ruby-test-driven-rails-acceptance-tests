@@ -1,0 +1,46 @@
+AllCops:
+  TargetRubyVersion: 2.4
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+Style/ModuleFunction:
+  EnforcedStyle: extend_self
+
+# Disable Metric checks for specs
+Metrics/BlockLength:
+  Exclude:
+    - 'spec/**/*.rb'
+
+Metrics/AbcSize:
+  Exclude:
+    - 'spec/**/*.rb'
+
+Metrics/BlockLength:
+  Exclude:
+    - 'lib/tasks/**/*.rake'
+    - 'spec/**/*.rb'
+    - 'Gemfile'
+    - 'Guardfile'
+    - '*.gemspec'
+
+Metrics/LineLength:
+  Max: 100
+  Exclude:
+    - Gemfile
+
+Style/Documentation:
+  Enabled: false
+
+
+Style/FormatString:
+  Enabled: false
+Style/DotPosition:
+  Enabled: false
+Metrics/AbcSize:
+  Max: 30
+
+Rubocop/Metrics/MethodLength:
+  Max: 20
+Rubocop/Style/TrailingCommaInLiteral:
+  Enabled: false

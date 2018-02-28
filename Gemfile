@@ -24,7 +24,7 @@ group :development, :test do
   gem 'factory_girl_rails'
   gem 'spring'
   gem 'spring-commands-rspec'
-
+  gem 'rubocop', require: false
 end
 
 group :test do
