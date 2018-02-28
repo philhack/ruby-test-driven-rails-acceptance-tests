@@ -19,10 +19,13 @@ describe AchievementsController do
   describe 'GET edit' do
     let(:achievement) { FactoryGirl.create(:public_achievement) }
     it 'renders edit template' do
-      get :edit, params: {id: achievement}
+      get :edit, params: { id: achievement }
       expect(response).to render_template(:edit)
     end
-    it 'assigns the requested achievement to the templates'
+    it 'assigns the requested achievement to the templates' do
+      get :edit, params: { id: achievement }
+      expect(assigns(:achievement)).to eq(achievement)
+    end
 
   end
 
@@ -57,13 +60,13 @@ describe AchievementsController do
 
     context 'valid data' do
       it 'redirects to achievements#show' do
-        post :create, params: { achievement: valid_data}
+        post :create, params: { achievement: valid_data }
         expect(response).to redirect_to(achievement_path(assigns[:achievement]))
       end
 
       it 'creates new achievement in database' do
         expect do
-          post :create, params: { achievement: valid_data}
+          post :create, params: { achievement: valid_data }
         end.to change(Achievement, :count).by(1)
       end
     end
@@ -72,13 +75,13 @@ describe AchievementsController do
       let(:invalid_data) { FactoryGirl.attributes_for(:public_achievement, title: '') }
 
       it 'renders :new template' do
-        post :create, params: { achievement: invalid_data}
+        post :create, params: { achievement: invalid_data }
         expect(response).to render_template(:new)
 
       end
       it "doesn't create a new achievement in the database" do
         expect do
-          post :create, params: { achievement: invalid_data}
+          post :create, params: { achievement: invalid_data }
         end.not_to change(Achievement, :count)
       end
     end
