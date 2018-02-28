@@ -26,11 +26,14 @@ group :development, :test do
   gem 'factory_girl_rails'
   gem 'spring'
   gem 'spring-commands-rspec'
+  gem 'spring-commands-cucumber'
   gem 'rubocop', require: false
 end
 
 group :test do
   gem 'capybara'
+  gem 'cucumber-rails', require: false
+  gem 'database_cleaner'
 end
 
 group :development do
