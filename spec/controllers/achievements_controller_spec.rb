@@ -46,7 +46,11 @@ describe AchievementsController do
         expect(response).to render_template(:new)
 
       end
-      it "doesn't create a new achievement in the database"
+      it "doesn't create a new achievement in the database" do
+        expect {
+          post :create, params: { achievement: FactoryGirl.attributes_for(:public_achievement, title: '')}
+        }.not_to change(Achievement, :count)
+      end
     end
 
   end
