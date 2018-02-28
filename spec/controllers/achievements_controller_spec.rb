@@ -6,6 +6,9 @@ describe AchievementsController do
       get :new
       expect(response).to render_template(:new)
     end
-    it "assigns new Achievement to @acheivement"
+    it "assigns new Achievement to @acheivement" do
+      get :new
+      expect(assigns(:achievement)).to be_a_new(Achievement)
+    end
   end
 end
