@@ -16,6 +16,10 @@ class AchievementsController < ApplicationController
     @achievement = Achievement.find(params[:id])
   end
 
+  def index
+    
+  end
+
 
   private
 
