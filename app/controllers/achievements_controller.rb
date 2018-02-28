@@ -20,6 +20,10 @@ class AchievementsController < ApplicationController
     @achievements = Achievement.public_access
   end
 
+  def edit
+    
+  end
+
 
   private
 
