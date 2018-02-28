@@ -21,6 +21,6 @@ feature 'create new achievement' do
 
     click_on('Create Achievement')
 
-    expect(page).to have_content("can't be bank")
+    expect(page).to have_content("can't be blank")
   end
 end
