@@ -146,6 +146,32 @@ describe AchievementsController do
         end
       end
     end
+
+    context 'is not the owner of the achievement' do
+      describe 'GET edit' do
+        it 'redirects to achievements page' do
+          get :edit, params: { id: FactoryGirl.create(:public_achievement) }
+          expect(response).to redirect_to(achievements_path)
+        end
+      end
+
+      describe 'PUT update' do
+        it 'redirects to achievements page' do
+          put :update, params: { id: FactoryGirl.create(:public_achievement), achievement: FactoryGirl.attributes_for(:public_achievement) }
+          expect(response).to redirect_to(achievements_path)
+        end
+      end
+
+      describe 'DELETE destroy' do
+        it 'redirects to achievements page' do
+          delete :destroy, params: { id: FactoryGirl.create(:public_achievement) }
+          expect(response).to redirect_to(achievements_path)
+        end
+      end
+    end
+
+    context 'is the owner of the achievement' do
+    end
   end
 
   describe 'GET edit' do
