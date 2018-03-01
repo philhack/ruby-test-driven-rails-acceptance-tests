@@ -26,7 +26,27 @@ describe AchievementsController do
       get :edit, params: { id: achievement }
       expect(assigns(:achievement)).to eq(achievement)
     end
+  end
 
+  describe 'PUT Update' do
+    let(:achievement) { FactoryGirl.create(:public_achievement) }
+
+    context 'valid data' do
+      let(:valid_data) { FactoryGirl.attributes_for(:public_achievement, title: 'New Title') }
+
+      it 'redirects to achievements#show' do
+        put :update, params: { id: achievement, achievement: valid_data }
+        expect(response).to redirect_to(achievement)
+      end
+
+      it 'updates achievement in the database' do
+
+      end
+    end
+
+    context 'invalid data' do
+
+    end
   end
 
 
