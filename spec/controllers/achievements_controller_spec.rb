@@ -62,6 +62,19 @@ describe AchievementsController do
     end
   end
 
+  describe 'DELETE destroy' do
+    let(:achievement){ FactoryGirl.create(:public_achievement)}
+
+    it 'redirects to achievements#index' do
+      delete :destroy, params: { id: achievement}
+      expect(response).to redirect_to(achievements_path)
+    end
+
+    it 'deletes the achievement from the database' do
+
+    end
+  end
+
 
   describe 'GET new' do
     it 'renders :new template' do
