@@ -3,7 +3,7 @@ We use rspec, capybara, cucumber to write acceptance tests. We also learn about 
 
 Below are the notes and takeways that I learns from doing this hands-on exercise.
 
-## How to Wire Up RSpec to Rails
+## Rspec With Rails
 ### Install Gems
 ```
 group :development, :test do
@@ -35,6 +35,55 @@ rspec
 You can ignore a test by placing the keyword `pending` inside the rspec test
 ```
 pending
+```
+
+### Rspec format documentation
+By using the command `rspec --format=documentation`, instead of rendering the rspec tests using ..... (dots), it displays in in a nice, clean, descriptive way on the console
+   
+   
+```
+AchievementsController
+ GET index
+   renders index template
+   assigns only public achievements to template
+ GET edit
+   renders edit template
+   assigns the requested achievement to the templates
+ PUT Update
+   valid data
+     redirects to achievements#show
+     updates achievement in the database
+   invalid data
+     renders edit template
+     doesn't update achievement in the database
+ DELETE destroy
+   redirects to achievements#index
+   deletes the achievement from the database
+ GET new
+   renders :new template
+   assigns new Achievement to @achievement
+ GET show
+   renders :show template
+   assigns requested achievement to @achievement
+ POST create
+   valid data
+     redirects to achievements#show
+     creates new achievement in database
+   invalid data
+     renders :new template
+     doesn't create a new achievement in the database
+
+achievement page
+ achievement public page
+ render markdown description
+
+create new achievement
+ create new achievement with valid data
+ can not create achievement with invalid data
+
+home page
+ welcome message
+
 ```
 
 ### Removing Code Commands

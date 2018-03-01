@@ -18,6 +18,7 @@ gem 'jbuilder', '~> 2.5'
 gem 'bootstrap-sass'
 gem 'simple_form'
 gem 'redcarpet'
+gem 'devise'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -34,6 +35,7 @@ group :test do
   gem 'capybara'
   gem 'cucumber-rails', require: false
   gem 'database_cleaner'
+  gem 'rails-controller-testing'
 end
 
 group :development do
