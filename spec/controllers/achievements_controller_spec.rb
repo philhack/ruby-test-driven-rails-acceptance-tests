@@ -71,7 +71,8 @@ describe AchievementsController do
     end
 
     it 'deletes the achievement from the database' do
-
+      delete :destroy, params: { id: achievement}
+      expect(Achievement.exists?(achievement.id)).to be_falsey
     end
   end
 
