@@ -40,7 +40,9 @@ describe AchievementsController do
       end
 
       it 'updates achievement in the database' do
-
+        put :update, params: { id: achievement, achievement: valid_data }
+        achievement.reload
+        expect(achievement.title).to eq('New Title')
       end
     end
 
