@@ -103,6 +103,49 @@ describe AchievementsController do
       end
     end
 
+    describe 'GET new' do
+      it 'renders :new template' do
+        get :new
+        expect(response).to render_template(:new)
+      end
+      it 'assigns new Achievement to @achievement' do
+        get :new
+        expect(assigns(:achievement)).to be_a_new(Achievement)
+      end
+    end
+
+
+    describe 'POST create' do
+      let(:valid_data) { FactoryGirl.attributes_for(:public_achievement) }
+
+      context 'valid data' do
+        it 'redirects to achievements#show' do
+          post :create, params: { achievement: valid_data }
+          expect(response).to redirect_to(achievement_path(assigns[:achievement]))
+        end
+
+        it 'creates new achievement in database' do
+          expect do
+            post :create, params: { achievement: valid_data }
+          end.to change(Achievement, :count).by(1)
+        end
+      end
+
+      context 'invalid data' do
+        let(:invalid_data) { FactoryGirl.attributes_for(:public_achievement, title: '') }
+
+        it 'renders :new template' do
+          post :create, params: { achievement: invalid_data }
+          expect(response).to render_template(:new)
+
+        end
+        it "doesn't create a new achievement in the database" do
+          expect do
+            post :create, params: { achievement: invalid_data }
+          end.not_to change(Achievement, :count)
+        end
+      end
+    end
   end
 
   describe 'GET edit' do
@@ -162,51 +205,6 @@ describe AchievementsController do
     it 'deletes the achievement from the database' do
       delete :destroy, params: { id: achievement}
       expect(Achievement.exists?(achievement.id)).to be_falsey
-    end
-  end
-
-
-  describe 'GET new' do
-    it 'renders :new template' do
-      get :new
-      expect(response).to render_template(:new)
-    end
-    it 'assigns new Achievement to @achievement' do
-      get :new
-      expect(assigns(:achievement)).to be_a_new(Achievement)
-    end
-  end
-
-
-  describe 'POST create' do
-    let(:valid_data) { FactoryGirl.attributes_for(:public_achievement) }
-
-    context 'valid data' do
-      it 'redirects to achievements#show' do
-        post :create, params: { achievement: valid_data }
-        expect(response).to redirect_to(achievement_path(assigns[:achievement]))
-      end
-
-      it 'creates new achievement in database' do
-        expect do
-          post :create, params: { achievement: valid_data }
-        end.to change(Achievement, :count).by(1)
-      end
-    end
-
-    context 'invalid data' do
-      let(:invalid_data) { FactoryGirl.attributes_for(:public_achievement, title: '') }
-
-      it 'renders :new template' do
-        post :create, params: { achievement: invalid_data }
-        expect(response).to render_template(:new)
-
-      end
-      it "doesn't create a new achievement in the database" do
-        expect do
-          post :create, params: { achievement: invalid_data }
-        end.not_to change(Achievement, :count)
-      end
     end
   end
 end
