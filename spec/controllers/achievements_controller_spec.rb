@@ -55,9 +55,10 @@ describe AchievementsController do
       end
 
       it "doesn't update achievement in the database" do
-
+        put :update, params: { id: achievement, achievement: invalid_data }
+        achievement.reload
+        expect(achievement.description).not_to eq('new')
       end
-
     end
   end
 
