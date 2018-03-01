@@ -37,6 +37,18 @@ You can ignore a test by placing the keyword `pending` inside the rspec test
 pending
 ```
 
+### it_behaves_like
+Duplicate code can be extracted out of tests by using `it_behaves_like`
+```
+shared_examples 'public access to achievements' do
+...
+end
+```
+
+```
+it_behaves_like  'public access to achievements'
+```
+
 ### Rspec format documentation
 By using the command `rspec --format=documentation`, instead of rendering the rspec tests using ..... (dots), it displays in in a nice, clean, descriptive way on the console
    
